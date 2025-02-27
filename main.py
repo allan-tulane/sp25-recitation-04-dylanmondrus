@@ -37,6 +37,10 @@ def word_count_map(doc):
     [('i', 1), ('am', 1), ('sam', 1), ('i', 1), ('am', 1)]
     """
     ###TODO
+    word_counts = []
+    for word in doc.split():
+        word_counts.append((word, 1))
+    return word_counts
     
     
 
@@ -54,6 +58,9 @@ def word_count_reduce(group):
     NOTE: you should use call the `reduce` function here.
     """
     ###TODO
+    word, counts = group
+    total_count = sum(counts)
+    return (word, total_count)
     
     
 
@@ -123,4 +130,12 @@ def sentiment_map(doc,
     [('negative', 1), ('negative', 1)]
     """
     ###TODO
+
+    sentiment_counts = []
+    for word in doc.split():
+        if word in pos_terms:
+            sentiment_counts.append(("positive", 1))
+        elif word in neg_terms:
+            sentiment_counts.append(("negative", 1))
+    return sentiment_counts
 
